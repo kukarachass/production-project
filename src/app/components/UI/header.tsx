@@ -6,6 +6,8 @@ import {Button} from "@heroui/react";
 import cn from "classnames";
 import {usePathname} from "next/navigation";
 import {siteConfig} from "@/app/config/config";
+import {layoutConfig} from "@/app/config/layout.config";
+
 
 export default function HeaderNav() {
 
@@ -33,7 +35,7 @@ export default function HeaderNav() {
     const pathName = usePathname(); // navLink
 
     return (
-        <div className="flex items-center justify-between p-6 bg-neutral-900">
+        <div className={`flex items-center justify-between p-6 bg-neutral-900 h-[${layoutConfig.headerHeight}]`}>
             <div className="flex items-center gap-3">
                 <Image src="/logo2.svg" alt="logo" width={35} height={35}/>
                 <span className="font-bold text-lg">recipe.</span>
