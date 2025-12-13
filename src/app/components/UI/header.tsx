@@ -46,6 +46,5 @@ export default function HeaderNav() {
                 <Button className={"bg-inherit border border-gray-700 "} variant="secondary">Sign Out</Button>
             </div>
         </div>
-
     )
 }
