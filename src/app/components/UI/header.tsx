@@ -7,6 +7,9 @@ import cn from "classnames";
 import {usePathname} from "next/navigation";
 import {siteConfig} from "@/app/config/config";
 import {layoutConfig} from "@/app/config/layout.config";
+import LoginForm from "@/app/Forms/LoginForm";
+import RegisterForm from "@/app/Forms/RegisterForm";
+import AuthForm from "@/app/Forms/AuthForm";
 
 
 export default function HeaderNav() {
@@ -17,14 +20,19 @@ export default function HeaderNav() {
                 const isActive = pathName === item.href;
                 return (
                     <Link
-                        className={cn("cursor-pointer h-9 bg-neutral-800 relative inline-flex items-center justify-center gap-2 text-sm font-bold rounded-md px-3", item.classname, {
+                        // Сохраняем items-center для центрирования текста (item.label)
+                        className={cn("cursor-pointer h-9 bg-neutral-800 relative flex items-center justify-center gap-2 text-sm font-bold rounded-md px-3", item.classname, {
                             [item.active]: isActive,
                         })}
                         href={item.href}
                         key={item.href}
                     >
-                        <Image className="self-end object-contain" src={item.image} width={35} height={35}
-                               alt={item.label}/>
+                        {/* Добавляем обертку с flex items-end h-full */}
+                        <div className="flex items-end h-full">
+                            {/* Убедитесь, что здесь нет self-end */}
+                            <Image className="object-contain" src={item.image} width={35} height={35}
+                                   alt={item.label}/>
+                        </div>
                         {item.label}
                     </Link>
                 )
@@ -44,8 +52,10 @@ export default function HeaderNav() {
                 {getNavItems()}
             </div>
             <div className="flex flex-wrap gap-3">
-                <Button className=""> Sign In</Button>
-                <Button className={"bg-inherit border border-gray-700 "} variant="secondary">Sign Out</Button>
+                {/*<LoginForm/>*/}
+                {/*<RegisterForm/>*/}
+                {/*<Button className={"bg-inherit border border-gray-700 "} variant="secondary">Sign Out</Button>*/}
+                <AuthForm/>
             </div>
         </div>
     )

@@ -19,7 +19,7 @@ export const siteConfig = {
             label: "About Us",
             classname: "hover:text-blue-500 transition-colors duration-200",
             active: "text-blue-500",
-            image: "/about.svg"
+            image: "/group.svg"
         },
     ]
 }
