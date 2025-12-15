@@ -5,24 +5,23 @@ import Link from "next/link";
 import {useState} from "react";
 import {IAuthFormProps} from "@/app/Forms/IAuthForm.props";
 import {emailValidator, passwordValidator} from "@/app/Forms/formValidators";
+import {register} from "node:module";
+import {registerUser} from "@/actions/register";
 
 
 export default function RegisterForm({onSwitch, close}: IAuthFormProps) {
 
     const [formData, setFormData] = useState({
+        email: "",
         password: "",
         confirmPassword: "",
     })
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const data: Record<string, string> = {};
 
-        // Convert FormData to plain object
-        formData.forEach((value, key) => {
-            data[key] = value.toString();
-        });
+        const result = await registerUser(formData);
+        console.log(result);
     };
 
 
@@ -37,6 +36,7 @@ export default function RegisterForm({onSwitch, close}: IAuthFormProps) {
                 <Label>Email</Label>
                 <Input
                     className="bg-neutral-800 text-white" placeholder="john@example.com"
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                 />
                 <FieldError/>
             </TextField>
